@@ -1,0 +1,8 @@
+C:\Users\Administrator\source\repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.csproj.CoreCompileInputs.cache
+C:\Repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.csprojAssemblyReference.cache
+C:\Repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.AssemblyInfoInputs.cache
+C:\Repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.AssemblyInfo.cs
+C:\Repos\Musixmatch.NET\obj\Debug\netcoreapp3.1\Musixmatch.NET.csproj.CoreCompileInputs.cache
