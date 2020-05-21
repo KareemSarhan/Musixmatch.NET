@@ -2,3 +2,5 @@
 tests/Test.cs
 
 *.cache
+
+Test/Test.cs
