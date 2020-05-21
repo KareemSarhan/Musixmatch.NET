@@ -12,6 +12,9 @@ namespace Musixmatch.NET
             this.apiToken = apiToken;
             this.url = url;
         }
-
+            public String Get_url(String url)
+        {
+            return this.url + url + String.Format("&apikey={0}",this.apiToken);
+        }
     }
 }
