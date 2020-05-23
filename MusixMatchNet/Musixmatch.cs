@@ -249,6 +249,14 @@ namespace MusixmatchNet
         {
             return this.url + String.Format("track.lyrics.get?format=jsonp&callback=callback&track_id={0}&apikey={1}", track_id, this.apiToken);
         }
+        public String match_lyrics(String track, String artist)
+        {
+            return this.url + String.Format("matcher.lyrics.get?format=jsonp&callback=callback&q_track={0}&q_artist={1}&apikey={2}", track, artist, this.apiToken);
+        }
+        public String lyrics_get(String track_id)
+        {
+            return this.url + String.Format("track.lyrics.get?format=jsonp&callback=callback&track_id={0}&apikey={1}", track_id, this.apiToken);
+        }
         public static void Main(String[] Args) { }
     }
 }
