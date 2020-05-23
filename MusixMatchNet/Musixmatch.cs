@@ -100,14 +100,27 @@ namespace MusixmatchNet
             RawJson RawJson = JsonConvert.DeserializeObject<RawJson>(response);
             return ReturnJson.From_AlbumToAlbum(RawJson._Message._Body._Album);
         }
-        public List<Artist> GetArtistsChart(String _country)
+        /// <summary>
+        /// Get an artist chart.
+        /// <para>
+        /// Artist chart is a chart of the  top artists within a given country.
+        /// </para>
+        /// </summary>
+        /// <param name="country">A valid country code (default US).</param>
+        /// <returns></returns>
+        public List<Artist> GetArtistsChart(String country= "US")
         {
-            String url = Get_url($"chart.artists.get?format={_format}&callback={_callback}&page={page}&page_size={page_size}&country={_country}");
+            String url = Get_url($"chart.artists.get?format={_format}&callback={_callback}&page={page}&page_size={page_size}&country={country}");
             String response = RequestAsync(url).Result;
             StatusCode.CheckResponse(response);
             RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
             return ReturnJson.FromRawJsonToArtistList(RawJson);
         }
+        /// <summary>
+        /// Gets the artist data using artist_id .
+        /// </summary>
+        /// <param name="artist_id">Musixmatch artist id</param>
+        /// <returns></returns>
         public Artist GetArtist(String artist_id)
         {
             String url = Get_url($"artist.get?format={_format}&callback={_callback}&artist_id={artist_id}");
@@ -116,14 +129,25 @@ namespace MusixmatchNet
             RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
             return ReturnJson.From_ArtistToArtist(RawJson._Message._Body._Artist);
         }
-        public List<Artist> SearchArtist(String q_artist, double f_artist_id)
+        /// <summary>
+        /// Returns Artists with names containing the ArtistName.
+        /// </summary>
+        /// <param name="PartialArtistName">The Artist name you want to search with/for.</param>
+        /// <param name="f_artist_id">Musixmatch artist id.</param>
+        /// <returns></returns>
+        public List<Artist> SearchArtist(String PartialArtistName, double f_artist_id= 0.0)
         {
-            String url = Get_url($"artist.search?format={_format}&callback={_callback}&q_artist={q_artist}&f_artist_id={f_artist_id}&page={page}&page_size={page_size}");
+            String url = Get_url($"artist.search?format={_format}&callback={_callback}&q_artist={PartialArtistName}&f_artist_id={f_artist_id}&page={page}&page_size={page_size}");
             String response = RequestAsync(url).Result;
             StatusCode.CheckResponse(response);
             RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
             return ReturnJson.FromRawJsonToArtistList(RawJson);
         }
+        /// <summary>
+        /// Get related artists.
+        /// </summary>
+        /// <param name="artist_id">The musiXmatch artist id</param>
+        /// <returns>A list of artists somehow related to a given one.</returns>
         public List<Artist> GetRelatedArtist(String artist_id)
         {
             String url = Get_url($"artist.related.get?format={_format}&callback={_callback}&artist_id={artist_id}&page_size={page_size}&page={page}");
