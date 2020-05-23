@@ -100,5 +100,38 @@ namespace MusixmatchNet
             RawJson RawJson = JsonConvert.DeserializeObject<RawJson>(response);
             return ReturnJson.From_AlbumToAlbum(RawJson._Message._Body._Album);
         }
+        public List<Artist> GetArtistsChart(String _country)
+        {
+            String url = Get_url($"chart.artists.get?format={_format}&callback={_callback}&page={page}&page_size={page_size}&country={_country}");
+            String response = RequestAsync(url).Result;
+            StatusCode.CheckResponse(response);
+            RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
+            return ReturnJson.FromRawJsonToArtistList(RawJson);
+        }
+        public Artist GetArtist(String artist_id)
+        {
+            String url = Get_url($"artist.get?format={_format}&callback={_callback}&artist_id={artist_id}");
+            String response = RequestAsync(url).Result;
+            StatusCode.CheckResponse(response);
+            RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
+            return ReturnJson.From_ArtistToArtist(RawJson._Message._Body._Artist);
+        }
+        public List<Artist> SearchArtist(String q_artist, double f_artist_id)
+        {
+            String url = Get_url($"artist.search?format={_format}&callback={_callback}&q_artist={q_artist}&f_artist_id={f_artist_id}&page={page}&page_size={page_size}");
+            String response = RequestAsync(url).Result;
+            StatusCode.CheckResponse(response);
+            RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
+            return ReturnJson.FromRawJsonToArtistList(RawJson);
+        }
+        public List<Artist> GetRelatedArtist(String artist_id)
+        {
+            String url = Get_url($"artist.related.get?format={_format}&callback={_callback}&artist_id={artist_id}&page_size={page_size}&page={page}");
+            String response = RequestAsync(url).Result;
+            StatusCode.CheckResponse(response);
+            RawJson RawJson = JsonConvert.DeserializeObject<RawJson>($"{response}");
+            return ReturnJson.FromRawJsonToArtistList(RawJson);
+        }
+        public static void Main(String[] Args) { }
     }
 }
