@@ -3,3 +3,11 @@
 obj/Debug/netcoreapp3.1/
 
 bin/Debug/netcoreapp3.1/
+
+.vs/Musixmatch.NET/v16/
+
+MusixMatchNet/bin/Debug/netcoreapp3.1/
+
+MusixMatchNet/obj/Debug/netcoreapp3.1/
+
+MusixMatchNet/obj/
