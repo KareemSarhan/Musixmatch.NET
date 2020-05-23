@@ -211,7 +211,7 @@ namespace MusixmatchNet
         /// <param name="f_has_lyrics">When set, filter only contents with lyrics</param>
         /// <param name="s_artist_rating">Sort by our popularity index for artists (asc|desc)</param>
         /// <param name="s_track_rating">Sort by our popularity index for tracks (asc|desc)</param>
-        /// <param name="quorum_factor">Search only a part of the given query string.Allowed range is (0.1 – 0.9)</param>
+        /// <param name="quorum_factor">Search only a part of the given query string.Allowed range is (0.1 ï¿½ 0.9)</param>
         /// <returns></returns>
         public List<Track> SearchTrack(String q_track = null, String q_artist = null, String q_lyrics = null, double? f_artist_id = null, double? f_music_genre_id = null, double? f_lyrics_language = null, double? f_has_lyrics = null, string s_artist_rating = null, string s_track_rating = null, double? quorum_factor = null)
         {
@@ -240,6 +240,14 @@ namespace MusixmatchNet
             StatusCode.CheckResponse(response);
             RawJson RawJson = JsonConvert.DeserializeObject<RawJson>(response);
             return ReturnJson.FromRawJsonToTrackList(RawJson);
+        }
+        public String match_lyrics(String track, String artist)
+        {
+            return this.url + String.Format("matcher.lyrics.get?format=jsonp&callback=callback&q_track={0}&q_artist={1}&apikey={2}", track, artist, this.apiToken);
+        }
+        public String lyrics_get(String track_id)
+        {
+            return this.url + String.Format("track.lyrics.get?format=jsonp&callback=callback&track_id={0}&apikey={1}", track_id, this.apiToken);
         }
         public static void Main(String[] Args) { }
     }
