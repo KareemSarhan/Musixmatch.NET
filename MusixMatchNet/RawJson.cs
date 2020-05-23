@@ -37,6 +37,13 @@
         
         [JsonProperty("artist")]
         public _Artist _Artist { get; set; }
+
+        [JsonProperty("track_list")]
+        public List<_TrackList> _TrackList { get; set; }
+
+        [JsonProperty("track")]
+        public _Track _Track { get; set; }
+
     }
     public class _ArtistList
     {
@@ -115,7 +122,7 @@
         public string _TrackName { get; set; }
 
         [JsonProperty("track_name_translation_list")]
-        public List<object> _TrackNameTranslationList { get; set; }
+        public List<_TrackNameTranslationList> _TrackNameTranslationList { get; set; }
 
         [JsonProperty("track_rating")]
         public long _TrackRating { get; set; }
@@ -167,6 +174,17 @@
 
         [JsonProperty("primary_genres")]
         public _PrimaryGenres _PrimaryGenres { get; set; }
+
+        [JsonProperty("secondary_genres")]
+        public _PrimaryGenres _SecondaryGenres { get; set; }
+    }
+    public class _TrackNameTranslationList
+    {
+        [JsonProperty("language")]
+        public string _Language { get; set; }
+
+        [JsonProperty("translation")]
+        public string _Translation { get; set; }
     }
     public class _ArtistAliasList
     {
