@@ -37,6 +37,13 @@
         
         [JsonProperty("artist")]
         public _Artist _Artist { get; set; }
+
+        [JsonProperty("track_list")]
+        public List<_TrackList> _TrackList { get; set; }
+
+        [JsonProperty("track")]
+        public _Track _Track { get; set; }
+
     }
     public class _ArtistList
     {
@@ -100,7 +107,85 @@
         [JsonProperty("artist_rating")]
         public long _ArtistRating { get; set; }
     }
+    public partial class _TrackList
+    {
+        [JsonProperty("track")]
+        public _Track _Track { get; set; }
+    }
 
+    public partial class _Track
+    {
+        [JsonProperty("track_id")]
+        public long _TrackId { get; set; }
+
+        [JsonProperty("track_name")]
+        public string _TrackName { get; set; }
+
+        [JsonProperty("track_name_translation_list")]
+        public List<_TrackNameTranslationList> _TrackNameTranslationList { get; set; }
+
+        [JsonProperty("track_rating")]
+        public long _TrackRating { get; set; }
+
+        [JsonProperty("commontrack_id")]
+        public long _CommontrackId { get; set; }
+
+        [JsonProperty("instrumental")]
+        public long _Instrumental { get; set; }
+
+        [JsonProperty("explicit")]
+        public long _Explicit { get; set; }
+
+        [JsonProperty("has_lyrics")]
+        public long _HasLyrics { get; set; }
+
+        [JsonProperty("has_subtitles")]
+        public long _HasSubtitles { get; set; }
+
+        [JsonProperty("has_richsync")]
+        public long _HasRichsync { get; set; }
+
+        [JsonProperty("num_favourite")]
+        public long _NumFavourite { get; set; }
+
+        [JsonProperty("album_id")]
+        public long _AlbumId { get; set; }
+
+        [JsonProperty("album_name")]
+        public string _AlbumName { get; set; }
+
+        [JsonProperty("artist_id")]
+        public long _ArtistId { get; set; }
+
+        [JsonProperty("artist_name")]
+        public string _ArtistName { get; set; }
+
+        [JsonProperty("track_share_url")]
+        public Uri _TrackShareUrl { get; set; }
+
+        [JsonProperty("track_edit_url")]
+        public Uri _TrackEditUrl { get; set; }
+
+        [JsonProperty("restricted")]
+        public long _Restricted { get; set; }
+
+        [JsonProperty("updated_time")]
+        public DateTimeOffset _UpdatedTime { get; set; }
+
+        [JsonProperty("primary_genres")]
+        public _PrimaryGenres _PrimaryGenres { get; set; }
+
+        [JsonProperty("secondary_genres")]
+        public _PrimaryGenres _SecondaryGenres { get; set; }
+    }
+    public class _TrackNameTranslationList
+    {
+        [JsonProperty("language")]
+        public string _Language { get; set; }
+
+        [JsonProperty("translation")]
+        public string _Translation { get; set; }
+    }
     public class _ArtistAliasList
     {
         [JsonProperty("artist_alias")]
