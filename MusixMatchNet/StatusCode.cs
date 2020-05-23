@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-namespace MusixmatchNet { 
+
+namespace MusixmatchNet
+{
     public class StatusCode
     {
         public static void CheckResponse(String response)
@@ -24,6 +24,7 @@ namespace MusixmatchNet {
                 throw new StatusCodeException(503, "Our system is a bit busy at the moment and your request can�t be satisfied.");
         }
     }
+
     public class StatusCodeException : Exception
     {
         public StatusCodeException(int CODE, String OUTPUT)

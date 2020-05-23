@@ -1,10 +1,10 @@
 ﻿namespace MusixmatchNet
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
 
     public class RawJson
     {
@@ -33,8 +33,8 @@
         public _Subtitle _Subtitle { get; set; }
 
         [JsonProperty("artist_list")]
-        public List<_ArtistList> _ArtistList { get; set; }   
-        
+        public List<_ArtistList> _ArtistList { get; set; }
+
         [JsonProperty("artist")]
         public _Artist _Artist { get; set; }
 
@@ -43,8 +43,8 @@
 
         [JsonProperty("track")]
         public _Track _Track { get; set; }
-
     }
+
     public class _ArtistList
     {
         [JsonProperty("artist")]
@@ -107,6 +107,7 @@
         [JsonProperty("artist_rating")]
         public long _ArtistRating { get; set; }
     }
+
     public partial class _TrackList
     {
         [JsonProperty("track")]
@@ -178,6 +179,7 @@
         [JsonProperty("secondary_genres")]
         public _PrimaryGenres _SecondaryGenres { get; set; }
     }
+
     public class _TrackNameTranslationList
     {
         [JsonProperty("language")]
@@ -186,6 +188,7 @@
         [JsonProperty("translation")]
         public string _Translation { get; set; }
     }
+
     public class _ArtistAliasList
     {
         [JsonProperty("artist_alias")]
@@ -212,6 +215,7 @@
         [JsonProperty("translation")]
         public string _Translation { get; set; }
     }
+
     public class _Subtitle
     {
         [JsonProperty("subtitle_body")]
@@ -313,11 +317,13 @@
         [JsonProperty("music_genre_list")]
         public List<_MusicGenreList> _MusicGenreList { get; set; }
     }
+
     public class _SecondaryGenres
     {
         [JsonProperty("music_genre_list")]
         public List<_MusicGenreList> _MusicGenreList { get; set; }
     }
+
     public class _MusicGenreList
     {
         [JsonProperty("music_genre")]
@@ -353,7 +359,6 @@
         [JsonProperty("available")]
         public long _Available { get; set; }
     }
-
 
     internal static class _Converter
     {

@@ -1,22 +1,20 @@
 ﻿namespace MusixmatchNet
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
 
     public class ReturnJson
     {
-        public static Album From_AlbumToAlbum(_Album _Album) 
+        public static Album From_AlbumToAlbum(_Album _Album)
         {
             Album TempAlbum = new Album(_Album);
             if (_Album._PrimaryGenres != null)
-                    foreach (_MusicGenreList _MusicGenreList in _Album._PrimaryGenres._MusicGenreList)
+                foreach (_MusicGenreList _MusicGenreList in _Album._PrimaryGenres._MusicGenreList)
                 {
                     TempAlbum.MusicGenreList.Add(new MusicGenre(_MusicGenreList));
                 }
-            if(_Album._SecondaryGenres != null)
+            if (_Album._SecondaryGenres != null)
                 foreach (_MusicGenreList _MusicGenreList in _Album._SecondaryGenres._MusicGenreList)
                 {
                     TempAlbum.MusicGenreList.Add(new MusicGenre(_MusicGenreList));
@@ -24,16 +22,17 @@
             return TempAlbum;
         }
 
-        public static List<Album> FromRawJsonToAlbumList(RawJson RawJson) 
+        public static List<Album> FromRawJsonToAlbumList(RawJson RawJson)
         {
             List<Album> AlbumList = new List<Album>();
-            if(RawJson._Message._Body._AlbumList!=null)
+            if (RawJson._Message._Body._AlbumList != null)
                 foreach (_AlbumList _AlbumList in RawJson._Message._Body._AlbumList)
                 {
                     AlbumList.Add(From_AlbumToAlbum(_AlbumList._Album));
                 }
             return AlbumList;
         }
+
         public static Artist From_ArtistToArtist(_Artist _Artist)
         {
             Artist TempArtist = new Artist(_Artist);
@@ -55,11 +54,12 @@
             if (_Artist._ArtistNameTranslationList != null)
                 foreach (_ArtistNameTranslationList _ArtistNameTranslationList in _Artist._ArtistNameTranslationList)
                 {
-                        TempArtist.ArtistNameTranslationList.Add(new ArtistNameTranslation(_ArtistNameTranslationList));
+                    TempArtist.ArtistNameTranslationList.Add(new ArtistNameTranslation(_ArtistNameTranslationList));
                 }
             return TempArtist;
         }
-        public static List<Artist> FromRawJsonToArtistList(RawJson RawJson) 
+
+        public static List<Artist> FromRawJsonToArtistList(RawJson RawJson)
         {
             List<Artist> ArtistList = new List<Artist>();
             if (RawJson._Message._Body._ArtistList != null)
@@ -69,6 +69,7 @@
                 }
             return ArtistList;
         }
+
         public static Track From_TrackToTrack(_Track _Track)
         {
             Track TempTrack = new Track(_Track);
@@ -90,6 +91,7 @@
 
             return TempTrack;
         }
+
         public static List<Track> FromRawJsonToTrackList(RawJson RawJson)
         {
             List<Track> TrackList = new List<Track>();
@@ -125,8 +127,8 @@
             this.UpdatedTime = _Track._UpdatedTime;
             this.TrackNameTranslationList = new List<TrackNameTranslation>();
             this.MusicGenreList = new List<MusicGenre>();
-
         }
+
         public long TrackId { get; set; }
 
         public string TrackName { get; set; }
@@ -166,9 +168,8 @@
         public DateTimeOffset UpdatedTime { get; set; }
 
         public List<MusicGenre> MusicGenreList { get; set; }
-
-
     }
+
     public class TrackNameTranslation
     {
         public TrackNameTranslation(_TrackNameTranslationList _trackNameTranslationList)
@@ -183,7 +184,8 @@
         [JsonProperty("translation")]
         public string Translation { get; set; }
     }
-    public class Artist 
+
+    public class Artist
     {
         public Artist(_Artist _Artist)
         {
@@ -202,9 +204,9 @@
             this.Managed = _Artist._Managed;
             this.ArtistTwitterUrl = _Artist._ArtistTwitterUrl;
             this.ArtistRating = _Artist._ArtistRating;
-            this.MusicGenreList =new List<MusicGenre>();
-            this.ArtistAliasList=new List<String>();
-            this.ArtistNameTranslationList=new List<ArtistNameTranslation>();
+            this.MusicGenreList = new List<MusicGenre>();
+            this.ArtistAliasList = new List<String>();
+            this.ArtistNameTranslationList = new List<ArtistNameTranslation>();
         }
 
         public ArtistCredits ArtistCredits { get; set; }
@@ -240,8 +242,8 @@
         public string ArtistTwitterUrl { get; set; }
 
         public long ArtistRating { get; set; }
-
     }
+
     public class ArtistNameTranslation
     {
         public ArtistNameTranslation(_ArtistNameTranslationList _ArtistNameTranslationList)
@@ -249,15 +251,18 @@
             this.Language = _ArtistNameTranslationList._ArtistNameTranslation._Language;
             this.Translation = _ArtistNameTranslationList._ArtistNameTranslation._Language;
         }
+
         public string Language { get; set; }
 
         public string Translation { get; set; }
     }
+
     public class ArtistCredits
     {
         [JsonProperty("artist_list")]
         public List<Artist> ArtistList { get; set; }
     }
+
     public class Album
     {
         public long AlbumId { get; set; }
@@ -288,24 +293,27 @@
 
         public string AlbumCoverart { get; set; }
 
-        public Album() { }
-
-        public Album(_AlbumList _AlbumList) 
+        public Album()
         {
-            this.AlbumCopyright=_AlbumList._Album._AlbumCopyright;
-            this.AlbumId=_AlbumList._Album._AlbumId;
-            this.AlbumLabel=_AlbumList._Album._AlbumLabel;
-            this.AlbumMbid=_AlbumList._Album._AlbumMbid;
-            this.AlbumName=_AlbumList._Album._AlbumName;
-            this.AlbumPline=_AlbumList._Album._AlbumPline;
-            this.AlbumRating=_AlbumList._Album._AlbumRating;
-            this.AlbumReleaseDate=_AlbumList._Album._AlbumReleaseDate;
-            this.ArtistId=_AlbumList._Album._ArtistId;
+        }
+
+        public Album(_AlbumList _AlbumList)
+        {
+            this.AlbumCopyright = _AlbumList._Album._AlbumCopyright;
+            this.AlbumId = _AlbumList._Album._AlbumId;
+            this.AlbumLabel = _AlbumList._Album._AlbumLabel;
+            this.AlbumMbid = _AlbumList._Album._AlbumMbid;
+            this.AlbumName = _AlbumList._Album._AlbumName;
+            this.AlbumPline = _AlbumList._Album._AlbumPline;
+            this.AlbumRating = _AlbumList._Album._AlbumRating;
+            this.AlbumReleaseDate = _AlbumList._Album._AlbumReleaseDate;
+            this.ArtistId = _AlbumList._Album._ArtistId;
             this.ArtistName = _AlbumList._Album._ArtistName;
             this.Restricted = _AlbumList._Album._Restricted;
             this.UpdatedTime = _AlbumList._Album._UpdatedTime;
             this.MusicGenreList = new List<MusicGenre>();
         }
+
         public Album(_Album _Album)
         {
             this.AlbumCopyright = _Album._AlbumCopyright;
@@ -322,7 +330,6 @@
             this.UpdatedTime = _Album._UpdatedTime;
             this.MusicGenreList = new List<MusicGenre>();
         }
-
     }
 
     public class MusicGenre
@@ -336,9 +343,12 @@
         public string MusicGenreNameExtended { get; set; }
 
         public string MusicGenreVanity { get; set; }
-        public MusicGenre() { }
 
-        public MusicGenre(_MusicGenreList _MusicGenreList) 
+        public MusicGenre()
+        {
+        }
+
+        public MusicGenre(_MusicGenreList _MusicGenreList)
         {
             this.MusicGenreId = _MusicGenreList._MusicGenre._MusicGenreId;
             this.MusicGenreName = _MusicGenreList._MusicGenre._MusicGenreName;
@@ -347,7 +357,4 @@
             this.MusicGenreVanity = _MusicGenreList._MusicGenre._MusicGenreVanity;
         }
     }
-
-
-
 }
