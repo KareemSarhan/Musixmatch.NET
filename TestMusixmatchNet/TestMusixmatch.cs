@@ -20,7 +20,108 @@ namespace TestMusixmatchNet
     [TestClass]
     public class TestMusixmatchArtist
     {
+        [TestMethod]
+        public void TestGetArtistsChartNull()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            try
+            {
+                List<Artist> Album = Musixmatch.GetArtistsChart("ussssss");
+            }
+            catch (StatusCodeException e)
+            {
+                String actual = e.Message;
+                String expected = "STATUS CODE 404 : The requested resource was not found.";
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+            }
+        }
+        [TestMethod]
+        public void TestGetArtistsChartValid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            String actual = Musixmatch.GetArtistsChart("us").ElementAt(0).ArtistCountry;
+            String expected = "US";
 
+            Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+
+        }
+        [TestMethod]
+
+        public void TestGetArtistValid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            String actual = Musixmatch.GetArtist("123").ArtistName;
+            String expected = "Sheryl Crow";
+
+            Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+
+        }
+        [TestMethod]
+        public void TestGetArtistInvalid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            try
+            {
+                Artist Artist = Musixmatch.GetArtist("999999999999");
+            }
+            catch (StatusCodeException e)
+            {
+                String actual = e.Message;
+                String expected = "STATUS CODE 404 : The requested resource was not found.";
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+            }
+
+        }
+        [TestMethod]
+        public void TestSearchArtistInvalid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            try
+            {
+                List<Artist> ArtistList = Musixmatch.SearchArtist("-");
+            }
+            catch (StatusCodeException e)
+            {
+                String actual = e.Message;
+                String expected = "STATUS CODE 404 : The requested resource was not found.";
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+            }
+
+        }
+        [TestMethod]
+        public void TestSearchArtistValid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+                List<Artist> ArtistList = Musixmatch.SearchArtist("Sia");
+                String actual = ArtistList.ElementAt(0).ArtistName;
+                String expected = "Sia";
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+        }
+        [TestMethod]
+        public void TestGetRelatedArtistInvalid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            try
+            {
+                List<Artist> ArtistList = Musixmatch.GetRelatedArtist("-");
+            }
+            catch (StatusCodeException e)
+            {
+                String actual = e.Message;
+                String expected = "STATUS CODE 404 : The requested resource was not found.";
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
+            }
+
+        }
+        [TestMethod]
+        public void TestGetRelatedArtistValid()
+        {
+            Musixmatch Musixmatch = new Musixmatch(Environment.GetEnvironmentVariable("MusixmatchApiToken"));
+            List<Artist> ArtistList = Musixmatch.GetRelatedArtist("56");
+            String actual = ArtistList.ElementAt(0).ArtistName;
+            String expected = "OutKast";
+            Assert.AreEqual(expected,actual, $"Expected {expected} Was {actual}");
+        }
     }
     [TestClass]
     public class TestMusixmatchAlbum
@@ -34,7 +135,7 @@ namespace TestMusixmatchNet
             String actual = AlbumList[0].ArtistName;
             String expected = "Sia";
 
-            Assert.AreEqual(actual, expected, $"Artist name Expected {expected} Was {actual}");
+            Assert.AreEqual(expected, actual, $"Artist name Expected {expected} Was {actual}");
         }
         [TestMethod]
         public void TestGetArtistAlbumsNull()
@@ -48,7 +149,7 @@ namespace TestMusixmatchNet
             {
                 String actual = e.Message;
                 String expected = "STATUS CODE 404 : The requested resource was not found.";
-                Assert.AreEqual(actual, expected, $"Expected {expected} Was {actual}");
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
             }
         }
 
@@ -61,7 +162,7 @@ namespace TestMusixmatchNet
             String actual = Album.ArtistName;
             String expected = "LMFAO";
 
-            Assert.AreEqual(actual, expected, $"Artist name Expected {expected} Was {actual}");
+            Assert.AreEqual(expected, actual, $"Artist name Expected {expected} Was {actual}");
         }
         [TestMethod]
         public void TestGetAlbumNull()
@@ -75,7 +176,7 @@ namespace TestMusixmatchNet
             {
                 String actual = e.Message;
                 String expected = "STATUS CODE 404 : The requested resource was not found.";
-                Assert.AreEqual(actual, expected, $"Expected {expected} Was {actual}");
+                Assert.AreEqual(expected, actual, $"Expected {expected} Was {actual}");
             }
         }
     }
